@@ -11,6 +11,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 // Forward declaration
 typedef struct s_config t_config;
@@ -23,7 +24,7 @@ void set_socket_timeout(int sockfd, int timeout_ms);
 int send_icmp_packet(int sockfd, struct sockaddr_in *dest, int sequence);
 
 // Packet receiving
-int receive_response(int sockfd, struct sockaddr_in *from, int timeout_ms);
+int receive_response(int sockfd, struct sockaddr_in *from, int timeout_ms, int expected_sequence, bool *dest_reached);
 
 // ICMP packet construction
 void build_icmp_packet(struct icmphdr *icmp, int sequence);

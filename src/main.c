@@ -1,6 +1,7 @@
 #include "../includes/args_parsing.h"
 #include "../includes/init.h"
 #include "../includes/socket.h"
+#include "../includes/traceroute.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,10 +17,10 @@ int main(int argc, char *argv[])
        config.max_hops);
 
     config.sockfd = create_raw_socket(config.source_addr);
-    printf("Created Raw Socket: %d\n", config.sockfd);
     if (config.source_addr) {
             printf("✅ Bind sur adresse source: %s\n", config.source_addr);
     }
+    traceroute_loop(&config);
 
     close(config.sockfd);
     return 0;
